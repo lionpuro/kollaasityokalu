@@ -4,6 +4,7 @@ import { useRef } from "react"
 import DownloadIcon from "@/components/Icon/DownloadIcon"
 import toast from "react-hot-toast"
 import clsx from "clsx"
+import getMultiplier from "@/utils/getMultiplier"
 
 export default function DownloadButton() {
   const linkRef = useRef<HTMLAnchorElement | null>(null)
@@ -13,7 +14,9 @@ export default function DownloadButton() {
   const downloadImage = () => {
     if (canvas && linkRef.current) {
       canvas.discardActiveObject()
-      linkRef.current.href = canvas.toDataURL({multiplier: 10})
+      linkRef.current.href = canvas.toDataURL({
+        multiplier: getMultiplier(canvas.getWidth())
+      })
       linkRef.current.download = `collage-${new Date().getTime()}.png`
       linkRef.current.click()
       toast.success("Kollaasi ladattu", { id: "toast-download" })

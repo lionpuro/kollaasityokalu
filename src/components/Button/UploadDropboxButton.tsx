@@ -5,6 +5,7 @@ import toast from "react-hot-toast"
 import clsx from "clsx"
 import {useState} from 'react'
 import LoadingOverlay from 'react-loading-overlay-ts';
+import getMultiplier from "@/utils/getMultiplier"
 
 
 export default function UploadDropboxButton() {
@@ -22,8 +23,10 @@ export default function UploadDropboxButton() {
 
         if (canvas && linkRef.current && dbxapk && pSize && pType && customerName) {
             canvas.discardActiveObject();
-            var collageSource = canvas.toDataURL({multiplier: 10});
-            var blob = dataURItoBlob(collageSource);
+            const collageSource = canvas.toDataURL({
+              multiplier: getMultiplier(canvas.getWidth())
+            })
+            const blob = dataURItoBlob(collageSource);
             const collageName = `collage-${new Date().getTime()}.png`;
             let fileUploadPath = '/' + pSize + '/' + pType + '/' + customerName + '/' + collageName;
 
