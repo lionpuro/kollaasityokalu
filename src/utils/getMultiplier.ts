@@ -13,7 +13,6 @@ export default function getMultiplier(width: number, height: number) {
     const maxArea = 16777216;
     return calcMultiplier(width, height, maxArea);
   } else {
-    const maxArea = 36000000;
-    return calcMultiplier(width, height, maxArea);
+    return 10;
   }
 }
