@@ -482,6 +482,24 @@ export const ASPECT_RATIOS: AspectRatioType[] = [
     icon: "data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_7_2)'%3E%3Crect x='0.5' y='4.5' width='29' height='22' stroke='white'/%3E%3Cg clip-path='url(%23clip1_7_2)'%3E%3Cpath d='M8.6014 24.9266H1.97553V18.3007L3.15162 18.3007L3.15162 23.7505L8.6014 23.7505V24.9266Z' fill='white'/%3E%3C/g%3E%3Cg clip-path='url(%23clip2_7_2)'%3E%3Cpath d='M21.3007 5.97552H27.9266V12.6014L26.7505 12.6014L26.7505 7.15161L21.3007 7.15161V5.97552Z' fill='white'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_7_2'%3E%3Crect width='30' height='30' fill='white'/%3E%3C/clipPath%3E%3CclipPath id='clip1_7_2'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(-2 20.951) rotate(-45)'/%3E%3C/clipPath%3E%3CclipPath id='clip2_7_2'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(31.9021 9.95105) rotate(135)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A",
   },
   {
+    name: "2:3",
+    nickname: "Pinterest Pin",
+    canvas: (FIXED_WIDTH) => calculateWidthByAspectRatio(2, 3, FIXED_WIDTH),
+    icon: "data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_6_21)'%3E%3Crect x='5.5' y='0.5' width='19' height='29' stroke='white'/%3E%3Cg clip-path='url(%23clip1_6_21)'%3E%3Cpath d='M13.6014 27.9266H6.97553V21.3007L8.15162 21.3007L8.15162 26.7505L13.6014 26.7505V27.9266Z' fill='white'/%3E%3C/g%3E%3Cg clip-path='url(%23clip2_6_21)'%3E%3Cpath d='M16.3007 1.97552H22.9266V8.60139L21.7505 8.60139L21.7505 3.15161L16.3007 3.15161V1.97552Z' fill='white'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_6_21'%3E%3Crect width='30' height='30' fill='white'/%3E%3C/clipPath%3E%3CclipPath id='clip1_6_21'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(3 23.951) rotate(-45)'/%3E%3C/clipPath%3E%3CclipPath id='clip2_6_21'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(26.9021 5.95105) rotate(135)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A",
+  },
+  {
+     name: "4:3",
+     nickname: "Standard",
+     canvas: (FIXED_WIDTH) => calculateWidthByAspectRatio(4, 3, FIXED_WIDTH),
+     icon: "data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_7_9)'%3E%3Crect x='0.5' y='4.5' width='29' height='22' stroke='white'/%3E%3Cg clip-path='url(%23clip1_7_9)'%3E%3Cpath d='M8.6014 24.9266H1.97553V18.3007L3.15162 18.3007L3.15162 23.7505L8.6014 23.7505V24.9266Z' fill='white'/%3E%3C/g%3E%3Cg clip-path='url(%23clip2_7_9)'%3E%3Cpath d='M21.3007 5.97552H27.9266V12.6014L26.7505 12.6014L26.7505 7.15161L21.3007 7.15161V5.97552Z' fill='white'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_7_9'%3E%3Crect width='30' height='30' fill='white'/%3E%3C/clipPath%3E%3CclipPath id='clip1_7_9'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(-2 20.951) rotate(-45)'/%3E%3C/clipPath%3E%3CclipPath id='clip2_7_9'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(31.9021 9.95105) rotate(135)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A",
+  },
+  {
+     name: "3:4",
+     nickname: "Twitter Tall Photo",
+     canvas: (FIXED_WIDTH) => calculateWidthByAspectRatio(3, 4, FIXED_WIDTH),
+     icon: "data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_7_2)'%3E%3Crect x='4.5' y='0.5' width='21' height='29' stroke='white'/%3E%3Cg clip-path='url(%23clip1_7_2)'%3E%3Cpath d='M12.6014 27.9266H5.97553V21.3007L7.15162 21.3007L7.15162 26.7505L12.6014 26.7505V27.9266Z' fill='white'/%3E%3C/g%3E%3Cg clip-path='url(%23clip2_7_2)'%3E%3Cpath d='M17.3007 1.97552H23.9266V8.60139L22.7505 8.60139L22.7505 3.15161L17.3007 3.15161V1.97552Z' fill='white'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_7_2'%3E%3Crect width='30' height='30' fill='white'/%3E%3C/clipPath%3E%3CclipPath id='clip1_7_2'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(2 23.951) rotate(-45)'/%3E%3C/clipPath%3E%3CclipPath id='clip2_7_2'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(27.9021 5.95105) rotate(135)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A",
+  },
+  {
     name: "1:1",
     nickname: "Square",
     canvas: (FIXED_WIDTH) => calculateWidthByAspectRatio(1, 1, FIXED_WIDTH),
@@ -493,12 +511,6 @@ export const ASPECT_RATIOS: AspectRatioType[] = [
     canvas: (FIXED_WIDTH) => calculateWidthByAspectRatio(2, 1, FIXED_WIDTH),
     icon: "data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_6_14)'%3E%3Crect x='0.5' y='7.5' width='29' height='14' stroke='white'/%3E%3Cg clip-path='url(%23clip1_6_14)'%3E%3Cpath d='M8.6014 19.9266H1.97553V13.3007L3.15162 13.3007L3.15162 18.7505L8.6014 18.7505V19.9266Z' fill='white'/%3E%3C/g%3E%3Cg clip-path='url(%23clip2_6_14)'%3E%3Cpath d='M21.3007 8.97552H27.9266V15.6014L26.7505 15.6014L26.7505 10.1516L21.3007 10.1516V8.97552Z' fill='white'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_6_14'%3E%3Crect width='30' height='30' fill='white'/%3E%3C/clipPath%3E%3CclipPath id='clip1_6_14'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(-2 15.951) rotate(-45)'/%3E%3C/clipPath%3E%3CclipPath id='clip2_6_14'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(31.9021 12.951) rotate(135)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A",
   }, */
-  /*  {
-    name: "2:3",
-    nickname: "Pinterest Pin",
-    canvas: (FIXED_WIDTH) => calculateWidthByAspectRatio(2, 3, FIXED_WIDTH),
-    icon: "data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_6_21)'%3E%3Crect x='5.5' y='0.5' width='19' height='29' stroke='white'/%3E%3Cg clip-path='url(%23clip1_6_21)'%3E%3Cpath d='M13.6014 27.9266H6.97553V21.3007L8.15162 21.3007L8.15162 26.7505L13.6014 26.7505V27.9266Z' fill='white'/%3E%3C/g%3E%3Cg clip-path='url(%23clip2_6_21)'%3E%3Cpath d='M16.3007 1.97552H22.9266V8.60139L21.7505 8.60139L21.7505 3.15161L16.3007 3.15161V1.97552Z' fill='white'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_6_21'%3E%3Crect width='30' height='30' fill='white'/%3E%3C/clipPath%3E%3CclipPath id='clip1_6_21'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(3 23.951) rotate(-45)'/%3E%3C/clipPath%3E%3CclipPath id='clip2_6_21'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(26.9021 5.95105) rotate(135)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A",
-  },*/
 
   /*   {
     name: "3:1",
@@ -506,18 +518,6 @@ export const ASPECT_RATIOS: AspectRatioType[] = [
     canvas: (FIXED_WIDTH) => calculateWidthByAspectRatio(3, 1, FIXED_WIDTH),
     icon: "data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_6_28)'%3E%3Crect x='0.5' y='10.5' width='29' height='9' stroke='white'/%3E%3Cg clip-path='url(%23clip1_6_28)'%3E%3Cpath d='M6.54244 18.0284H1.8284V13.3144L2.66514 13.3144L2.66514 17.1917L6.54244 17.1917V18.0284Z' fill='white'/%3E%3C/g%3E%3Cg clip-path='url(%23clip2_6_28)'%3E%3Cpath d='M23.4289 11.8284H28.143V16.5425L27.3062 16.5425L27.3062 12.6652L23.4289 12.6652V11.8284Z' fill='white'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_6_28'%3E%3Crect width='30' height='30' fill='white'/%3E%3C/clipPath%3E%3CclipPath id='clip1_6_28'%3E%3Crect width='8' height='8' fill='white' transform='translate(-1 15.2) rotate(-45)'/%3E%3C/clipPath%3E%3CclipPath id='clip2_6_28'%3E%3Crect width='8' height='8' fill='white' transform='translate(31.3137 14.6569) rotate(135)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A",
   }, */
-  // {
-  //   name: "3:4",
-  //   nickname: "Twitter Tall Photo",
-  //   canvas: (FIXED_WIDTH) => calculateWidthByAspectRatio(3, 4, FIXED_WIDTH),
-  //   icon: "data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_7_2)'%3E%3Crect x='4.5' y='0.5' width='21' height='29' stroke='white'/%3E%3Cg clip-path='url(%23clip1_7_2)'%3E%3Cpath d='M12.6014 27.9266H5.97553V21.3007L7.15162 21.3007L7.15162 26.7505L12.6014 26.7505V27.9266Z' fill='white'/%3E%3C/g%3E%3Cg clip-path='url(%23clip2_7_2)'%3E%3Cpath d='M17.3007 1.97552H23.9266V8.60139L22.7505 8.60139L22.7505 3.15161L17.3007 3.15161V1.97552Z' fill='white'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_7_2'%3E%3Crect width='30' height='30' fill='white'/%3E%3C/clipPath%3E%3CclipPath id='clip1_7_2'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(2 23.951) rotate(-45)'/%3E%3C/clipPath%3E%3CclipPath id='clip2_7_2'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(27.9021 5.95105) rotate(135)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A",
-  // },
-  // {
-  //   name: "4:3",
-  //   nickname: "Standard",
-  //   canvas: (FIXED_WIDTH) => calculateWidthByAspectRatio(4, 3, FIXED_WIDTH),
-  //   icon: "data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_7_9)'%3E%3Crect x='0.5' y='4.5' width='29' height='22' stroke='white'/%3E%3Cg clip-path='url(%23clip1_7_9)'%3E%3Cpath d='M8.6014 24.9266H1.97553V18.3007L3.15162 18.3007L3.15162 23.7505L8.6014 23.7505V24.9266Z' fill='white'/%3E%3C/g%3E%3Cg clip-path='url(%23clip2_7_9)'%3E%3Cpath d='M21.3007 5.97552H27.9266V12.6014L26.7505 12.6014L26.7505 7.15161L21.3007 7.15161V5.97552Z' fill='white'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_7_9'%3E%3Crect width='30' height='30' fill='white'/%3E%3C/clipPath%3E%3CclipPath id='clip1_7_9'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(-2 20.951) rotate(-45)'/%3E%3C/clipPath%3E%3CclipPath id='clip2_7_9'%3E%3Crect width='11.2445' height='11.2445' fill='white' transform='translate(31.9021 9.95105) rotate(135)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A",
-  // },
   /*   {
     name: "9:16",
     nickname: "Stories",

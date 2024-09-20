@@ -35,7 +35,7 @@ export const canvasSlice = createSlice({
       state.canvas = action.payload
     },
      // New reducers for border settings
-     setAddBorder: (state, action: PayloadAction<boolean>) => {
+    setAddBorder: (state, action: PayloadAction<boolean>) => {
       state.addBorder = action.payload;
     },
     setBorderColor: (state, action: PayloadAction<string>) => {
