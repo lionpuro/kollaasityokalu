@@ -208,11 +208,27 @@ export default function Canvas() {
           // Clear the stored references
           borderRefs.current = [];
 
+          if (borderSettings.addBorder) {
+            const bWidth = borderSettings.borderThickness * 2;
+            const outline = new fabric.Rect({
+              top: 0,
+              left: 0,
+              width: canvasState.width - bWidth * 2,
+              height: canvasState.height - bWidth * 2,
+              fill: '',
+              stroke: 'white',
+              strokeWidth: bWidth * 2,
+              selectable: false, // Make it not selectable
+              evented: false, // Make it not trigger events
+              strokeUniform: true,
+            });
+            canvasState.add(outline);
+            borderRefs.current.push(outline); // Store reference to the added border
+          }
           activeTemplate.config.forEach((config) => {
             const PROPERTIES = config.rectFabric(ratio.height, ratio.width);
 
             if (borderSettings.addBorder) {
-
               const border = new fabric.Rect({
                 ...PROPERTIES,
                 width: PROPERTIES.width - borderSettings.borderThickness * 2,
@@ -229,9 +245,10 @@ export default function Canvas() {
             } else {
               // Loop through stored border references and remove them from the canvas
               borderRefs.current.forEach(border => canvasState.remove(border));
+              //canvasState.remove(outline);
+
               // Clear the stored references
               borderRefs.current = [];
-
             }
           });
         }

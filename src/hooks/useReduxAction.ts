@@ -63,7 +63,7 @@ function useCanvasAction() {
   const setBorderThicknessAction = (thickness: number) => {
     dispatch(setBorderThickness(thickness));
   };
-  
+
   return {
     addImageAction,
     clearSelectedImageAction,
