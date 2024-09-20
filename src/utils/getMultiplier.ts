@@ -1,9 +1,19 @@
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
 
-export default function getMultiplier(width: number) {
-  if (!isIOS) {
-    return 6000 / width
+function calcMultiplier(width: number, height: number, maxSize: number) {
+  const ratio = width / height;
+  const maxWidth = Math.sqrt(maxSize * ratio);
+
+  const multiplier = maxWidth / width;
+  return multiplier;
+}
+
+export default function getMultiplier(width: number, height: number) {
+  if (isIOS) {
+    const maxArea = 16777216;
+    return calcMultiplier(width, height, maxArea);
   } else {
-    return 4096 / width
+    const maxArea = 36000000;
+    return calcMultiplier(width, height, maxArea);
   }
 }

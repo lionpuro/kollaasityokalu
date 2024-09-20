@@ -24,7 +24,7 @@ export default function UploadDropboxButton() {
         if (canvas && linkRef.current && dbxapk && pSize && pType && customerName) {
             canvas.discardActiveObject();
             const collageSource = canvas.toDataURL({
-              multiplier: getMultiplier(canvas.getWidth())
+              multiplier: getMultiplier(canvas.getWidth(), canvas.getHeight())
             })
             const blob = dataURItoBlob(collageSource);
             const collageName = `collage-${new Date().getTime()}.png`;

@@ -15,7 +15,7 @@ export default function DownloadButton() {
     if (canvas && linkRef.current) {
       canvas.discardActiveObject()
       linkRef.current.href = canvas.toDataURL({
-        multiplier: getMultiplier(canvas.getWidth())
+        multiplier: getMultiplier(canvas.getWidth(), canvas.getHeight())
       })
       linkRef.current.download = `collage-${new Date().getTime()}.png`
       linkRef.current.click()
