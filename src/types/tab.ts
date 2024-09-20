@@ -1,8 +1,8 @@
-import type { ReactElement } from "react"
+import type { ReactElement } from "react";
 
-export type SelectedTabType = "kollaasi" | "kuvasuhde" | "muokkaa"
+export type SelectedTabType = "kollaasi" | "kuvasuhde" | "muokkaa";
 
 export interface TabItem {
-  id: SelectedTabType
-  icon: ReactElement
+	id: SelectedTabType;
+	icon: ReactElement;
 }
