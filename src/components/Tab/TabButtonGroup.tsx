@@ -23,7 +23,7 @@ export default function TabButtonGroup() {
 	return (
 		<div
 			data-testid="tabs"
-			className="scrollbar-hide mx-2 grid grid-flow-col justify-stretch overflow-x-auto sm:mx-0"
+			className="scrollbar-hide mx-2 grid grid-flow-col justify-stretch overflow-x-auto sm:mx-0 sm:shrink-0"
 		>
 			{tabs.map((tab) => {
 				return (

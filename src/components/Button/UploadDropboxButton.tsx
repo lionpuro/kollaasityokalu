@@ -1,4 +1,5 @@
-import UploadDropboxIcon from "@/components/Icon/UploadDropboxIcon";
+//import UploadDropboxIcon from "@/components/Icon/UploadDropboxIcon";
+import ReturnIcon from "@/components/Icon/ReturnIcon";
 import { useCanvasData, useCanvasImageData } from "@/hooks/useReduxData";
 import getMultiplier from "@/utils/getMultiplier";
 import clsx from "clsx";
@@ -84,8 +85,9 @@ export default function UploadDropboxButton() {
 	useEffect(() => {
 		isActive && uploadDropboxImage();
 	}, [isActive]);
+	//<div className={clsx("bottom-0 left-0 px-2 pb-4", "sm:fixed sm:p-4")}>
 	return (
-		<div className={clsx("bottom-0 left-0 px-2 pb-4", "sm:fixed sm:p-4")}>
+		<div className={clsx("mt-auto px-2 pb-4", "sm:p-4")}>
 			<a ref={linkRef} id="uploadDropbox" className="hidden"></a>
 			<LoadingOverlay active={isActive} spinner text="Ladataan...">
 				<button
@@ -98,7 +100,7 @@ export default function UploadDropboxButton() {
 					onClick={() => setIsActive(true)}
 					disabled={uploadCount !== maxImageUploads}
 				>
-					<UploadDropboxIcon className="mr-2" />
+					<ReturnIcon className="mr-2" />
 					<span>
 						Valmis,{" "}
 						<span className="inline sm:hidden md:inline">palaa kauppaan</span>

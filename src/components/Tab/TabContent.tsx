@@ -14,7 +14,7 @@ export default function TabContent() {
 				"scrollbar-hide bg-neutral-900",
 				"mx-2 h-28 p-2",
 				"flex items-center overflow-x-auto overflow-y-hidden",
-				"sm:mx-0 sm:block sm:min-h-screen sm:overflow-y-auto sm:overflow-x-hidden",
+				"sm:mx-0 sm:block sm:h-auto sm:overflow-y-auto sm:overflow-x-hidden",
 			])}
 		>
 			{activeTab === "kollaasi" && <TabTemplate />}

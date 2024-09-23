@@ -266,8 +266,11 @@ export default function Canvas() {
 	}, [canvasState, borderSettings, activeRatioIndex, activeTemplate.config]);
 
 	return (
-		<div ref={wrapperRef}>
-			<div className="flex items-start justify-center py-2 sm:min-h-screen sm:py-8">
+		<div
+			ref={wrapperRef}
+			className="flex-col justify-between sm:flex sm:h-full"
+		>
+			<div className="flex items-start justify-center py-2 sm:py-8">
 				<canvas ref={canvasRef} />
 			</div>
 			<div className="hidden">
