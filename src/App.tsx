@@ -10,11 +10,11 @@ function App() {
 			<div className="flex flex-row flex-wrap">
 				<Toaster />
 
-				<aside className="order-2 flex w-full flex-col border-gray-800  sm:order-1 sm:h-screen sm:w-3/12 sm:border-r sm:bg-neutral-900">
+				<aside className="order-2 flex w-full flex-col border-gray-800 sm:order-1 sm:h-screen sm:w-4/12 sm:border-r sm:bg-neutral-900 lg:max-w-md">
 					<EditingPanel />
 				</aside>
 
-				<main className="order-1 w-full sm:order-2 sm:h-screen sm:w-9/12">
+				<main className="order-1 w-full sm:order-2 sm:h-screen sm:w-8/12 lg:grow">
 					<Canvas />
 				</main>
 			</div>

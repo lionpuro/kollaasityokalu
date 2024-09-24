@@ -25,7 +25,7 @@ export default function DownloadButton() {
 	};
 
 	return (
-		<div className={clsx("bottom-0 left-0 px-2 pb-4", "sm:fixed sm:p-4")}>
+		<div className={clsx("mt-auto px-2 pb-4", "sm:p-4")}>
 			<a ref={linkRef} id="download" className="hidden"></a>
 			<button
 				className={clsx([
