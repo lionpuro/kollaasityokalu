@@ -1,11 +1,11 @@
 //import UploadDropboxIcon from "@/components/Icon/UploadDropboxIcon";
-import ReturnIcon from "@/components/Icon/ReturnIcon";
 import { useCanvasData, useCanvasImageData } from "@/hooks/useReduxData";
 import getMultiplier from "@/utils/getMultiplier";
 import clsx from "clsx";
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { FaShoppingCart as CartIcon } from "react-icons/fa";
 import LoadingOverlay from "react-loading-overlay-ts";
 
 export default function UploadDropboxButton() {
@@ -63,20 +63,20 @@ export default function UploadDropboxButton() {
 					setIsActive(false);
 					const errorText = await response.text();
 					console.log(errorText);
-					toast.error("Kollaasia ei voi ladata! :(", {
+					toast.error("Kollaasin lataaminen epäonnistui", {
 						id: "toast-upload-dropbox",
 					});
 				}
 			} catch (e) {
 				setIsActive(false);
 				console.log(e);
-				toast.error("Kollaasia ei voi ladata! :(", {
+				toast.error("Kollaasin lataaminen epäonnistui", {
 					id: "toast-upload-dropbox",
 				});
 			}
 		} else {
 			setIsActive(false);
-			toast.error("Kollaasia ei voi ladata! :(", {
+			toast.error("Kollaasin lataaminen epäonnistui", {
 				id: "toast-upload-dropbox",
 			});
 		}
@@ -85,25 +85,24 @@ export default function UploadDropboxButton() {
 	useEffect(() => {
 		isActive && uploadDropboxImage();
 	}, [isActive]);
-	//<div className={clsx("bottom-0 left-0 px-2 pb-4", "sm:fixed sm:p-4")}>
 	return (
-		<div className={clsx("mt-auto px-2 pb-4", "sm:p-4")}>
+		<div className={clsx("mt-auto px-2 pb-4", "sm:p-3")}>
 			<a ref={linkRef} id="uploadDropbox" className="hidden"></a>
 			<LoadingOverlay active={isActive} spinner text="Ladataan...">
 				<button
 					className={clsx([
 						"flex w-full items-center justify-center",
-						"mt-4 px-5 py-3 text-sm font-semibold",
+						"mt-4 px-4 py-3 text-sm font-semibold",
 						"transition transition-colors",
 						"rounded bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-500",
 					])}
 					onClick={() => setIsActive(true)}
 					disabled={uploadCount !== maxImageUploads}
 				>
-					<ReturnIcon className="mr-2" />
+					<CartIcon className="mr-2 text-base" />
 					<span>
-						Valmis,{" "}
-						<span className="inline sm:hidden md:inline">palaa kauppaan</span>
+						Valmis
+						<span className="inline sm:hidden md:inline">, palaa kauppaan</span>
 					</span>
 				</button>
 			</LoadingOverlay>

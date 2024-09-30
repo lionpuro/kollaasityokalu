@@ -5,7 +5,7 @@ export default function CanvasFooter() {
 				href="https://kankainen.org"
 				target="_blank"
 				rel="noopener noreferrer"
-				className="font-medium text-gray-600 transition-colors hover:text-gray-200"
+				className="font-medium text-neutral-600 transition-colors hover:text-neutral-200"
 			>
 				kankainen.org
 			</a>

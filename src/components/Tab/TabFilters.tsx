@@ -73,11 +73,16 @@ export default function TabFilters() {
 							)}
 							disabled={uploadCount !== maxImageUploads}
 						>
-							<h3
-								className={`w-full text-center text-sm font-medium ${
+							{uploadCount !== maxImageUploads ||
+							borderSettings.addBorder === false ? (
+								<span> - </span>
+							) : (
+								<span>{borderSettings.borderThickness}</span>
+							)}
+							<h3 className={`w-full text-center text-sm font-medium`}>
+								{/*className={`w-full text-center text-sm font-medium ${
 									uploadCount !== maxImageUploads ? "text-gray-500" : ""
-								} `}
-							>
+								} `}*/}
 								Reuna
 							</h3>
 						</button>
