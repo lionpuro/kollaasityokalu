@@ -22,7 +22,7 @@ export interface FilterControlType {
 	min: number;
 	max: number;
 	step: number;
-	newFilter: (value: number) => filters.BaseFilter;
+	newFilter: (value: number) => filters.BaseFilter<FilterIdType>;
 }
 
 export interface FilterControlTypeProps extends FilterControlType {

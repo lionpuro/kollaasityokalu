@@ -1,4 +1,4 @@
-import type { FilterControlType } from "@/types";
+import type { FilterControlType, FilterIdType } from "@/types";
 import type { filters as fabricFilterType } from "fabric";
 import { filters as fabricFilter } from "fabric";
 
@@ -11,7 +11,7 @@ export const filters: FilterControlType[] = [
 		newFilter: (value) =>
 			new fabricFilter.Brightness({
 				brightness: value,
-			}) as fabricFilterType.BaseFilter,
+			}) as fabricFilterType.BaseFilter<FilterIdType>,
 	},
 	{
 		id: "Contrast",
@@ -21,7 +21,7 @@ export const filters: FilterControlType[] = [
 		newFilter: (value) =>
 			new fabricFilter.Contrast({
 				contrast: value,
-			}) as fabricFilterType.BaseFilter,
+			}) as fabricFilterType.BaseFilter<FilterIdType>,
 	},
 	{
 		id: "Saturation",
@@ -31,7 +31,7 @@ export const filters: FilterControlType[] = [
 		newFilter: (value) =>
 			new fabricFilter.Saturation({
 				saturation: value,
-			}) as fabricFilterType.BaseFilter,
+			}) as fabricFilterType.BaseFilter<FilterIdType>,
 	},
 	{
 		id: "Vibrance",
@@ -41,7 +41,7 @@ export const filters: FilterControlType[] = [
 		newFilter: (value) =>
 			new fabricFilter.Vibrance({
 				vibrance: value,
-			}) as fabricFilterType.BaseFilter,
+			}) as fabricFilterType.BaseFilter<FilterIdType>,
 	},
 	{
 		id: "Blur",
@@ -51,6 +51,6 @@ export const filters: FilterControlType[] = [
 		newFilter: (value) =>
 			new fabricFilter.Blur({
 				blur: value,
-			}) as fabricFilterType.BaseFilter,
+			}) as fabricFilterType.BaseFilter<FilterIdType>,
 	},
 ];
