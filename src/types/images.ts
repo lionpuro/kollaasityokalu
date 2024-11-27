@@ -1,6 +1,6 @@
-import type { Image } from "fabric";
+import type { FabricImage } from "fabric";
 
-export type CustomImageObject = Image & {
+export type CustomImageObject = FabricImage & {
 	id: string;
 };
 

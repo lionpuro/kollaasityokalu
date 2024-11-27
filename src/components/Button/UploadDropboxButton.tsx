@@ -69,7 +69,6 @@ export default function UploadDropboxButton() {
 				}
 			} catch (e) {
 				setIsActive(false);
-				console.log(e);
 				toast.error("Kollaasin lataaminen epäonnistui", {
 					id: "toast-upload-dropbox",
 				});

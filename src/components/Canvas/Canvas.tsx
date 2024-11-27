@@ -38,229 +38,229 @@ export default function Canvas() {
 
 	// Canvas initialization
 	useEffect(() => {
-		if (canvasRef.current && wrapperRef.current) {
-			// 0. Calculate canvas ratio by initial client width
-			const panelWidth = 640;
-			const ratio = ASPECT_RATIOS[activeRatioIndex].canvas(panelWidth);
+		if (!canvasRef.current || !wrapperRef.current) {
+			return;
+		}
+		// 0. Calculate canvas ratio by initial client width
+		const panelWidth = 640;
+		const ratio = ASPECT_RATIOS[activeRatioIndex].canvas(panelWidth);
 
-			// 1. Setup canvas
-			const canvas = new fabric.Canvas(canvasRef.current, {
-				backgroundColor: "#1a1a1a",
-				width: ratio.width,
-				height: ratio.height,
-				selection: false,
-				controlsAboveOverlay: false,
-				allowTouchScrolling: true,
-				imageSmoothingEnabled: false,
-			});
+		// 1. Setup canvas
+		const canvas = new fabric.Canvas(canvasRef.current, {
+			backgroundColor: "#1a1a1a",
+			width: ratio.width,
+			height: ratio.height,
+			selection: false,
+			controlsAboveOverlay: false,
+			allowTouchScrolling: true,
+			imageSmoothingEnabled: false,
+		});
 
-			if (wrapperRef.current.clientWidth < panelWidth) {
-				const scaledRatio = ASPECT_RATIOS[activeRatioIndex].canvas(
-					wrapperRef.current.clientWidth
-				);
-				canvas.setDimensions(
-					{ width: scaledRatio.width - 16, height: scaledRatio.height - 16 },
-					{ cssOnly: true }
-				);
-			}
+		if (wrapperRef.current.clientWidth < panelWidth) {
+			const scaledRatio = ASPECT_RATIOS[activeRatioIndex].canvas(
+				wrapperRef.current.clientWidth
+			);
+			canvas.setDimensions(
+				{ width: scaledRatio.width - 16, height: scaledRatio.height - 16 },
+				{ cssOnly: true }
+			);
+		}
 
-			canvas.preserveObjectStacking = true;
+		canvas.preserveObjectStacking = true;
 
-			// 1.1 Clone canvas
-			setCanvasAction(canvas);
-			setCanvasState(canvas);
+		// 1.1 Clone canvas
+		setCanvasAction(canvas);
+		setCanvasState(canvas);
 
-			// 2. Setup objects & its properties
-			activeTemplate.config.forEach((config) => {
-				const PROPERTIES = config.rectFabric(ratio.height, ratio.width);
-				const cell = new fabric.Rect(PROPERTIES).set(OBJECT_LOCKED);
+		// 2. Setup objects & its properties
+		activeTemplate.config.forEach((config) => {
+			const PROPERTIES = config.rectFabric(ratio.height, ratio.width);
+			const cell = new fabric.Rect(PROPERTIES).set(OBJECT_LOCKED);
 
-				// 3. Define image upload event handler
-				const handleImageUpload = (selectedCell: fabric.Rect) => {
-					const input = inputRef.current;
-					if (input) {
-						input.onchange = async (event) => {
-							const target = event.target as HTMLInputElement;
-							const file = target.files && target.files[0];
-							if (!file) return;
+			// 3. Define image upload event handler
+			const handleImageUpload = (selectedCell: fabric.Rect) => {
+				const input = inputRef.current;
+				if (!input) return;
 
-							// Load uploaded file as Base64
-							const reader = new FileReader();
-							reader.readAsDataURL(file);
-							reader.onload = (e) => {
-								const dataUrl = e.target?.result as string;
-								// Load image as fabric image
-								const addImage = async (imageBase64: string) => {
-									const img = await fabric.Image.fromURL(imageBase64);
-									const imgId = `img_${new Date().getTime()}`;
+				input.onchange = async (event) => {
+					const target = event.target as HTMLInputElement;
+					const file = target.files && target.files[0];
+					if (!file) return;
 
-									// Set position to selected cell
-									img.set({
-										id: imgId,
-										left: selectedCell.left,
-										top: selectedCell.top,
-										selectable: true,
-										hasControls: true,
-										clipPath: selectedCell,
-										perPixelTargetFind: true,
-									}) as CustomImageObject;
+					// Load uploaded file as Base64
+					const reader = new FileReader();
+					reader.readAsDataURL(file);
+					reader.onload = (e) => {
+						const dataUrl = e.target?.result as string;
+						// Load image as fabric image
+						const addImage = async (imageBase64: string) => {
+							const img = await fabric.Image.fromURL(imageBase64);
+							const imgId = `img_${new Date().getTime()}`;
 
-									// Scale accordingly to look good
-									if (config.scaleTo === "width") {
-										img.scaleToWidth(selectedCell.width + 1);
-									} else if (config.scaleTo === "height") {
-										img.scaleToHeight(selectedCell.height + 1);
-									}
+							// Set position to selected cell
+							img.set({
+								id: imgId,
+								left: selectedCell.left,
+								top: selectedCell.top,
+								selectable: true,
+								hasControls: true,
+								clipPath: selectedCell,
+								perPixelTargetFind: true,
+							}) as CustomImageObject;
 
-									// Save image in redux
-									addImageAction({
-										id: imgId,
-										filters: {
-											brightness: 0,
-											contrast: 0,
-											noise: 0,
-											saturation: 0,
-											vibrance: 0,
-											blur: 0,
-										},
-									});
+							// Scale accordingly to look good
+							if (config.scaleTo === "width") {
+								img.scaleToWidth(selectedCell.width + 1);
+							} else if (config.scaleTo === "height") {
+								img.scaleToHeight(selectedCell.height + 1);
+							}
 
-									canvas.add(img);
-									canvas.setActiveObject(img);
-								};
-								addImage(dataUrl);
-							};
-
-							// Render in canvas
-							canvas.remove(selectedCell);
-							canvas.renderAll();
-							toast.success("Kuva lisätty onnistuneesti", {
-								id: "toast-uploaded",
+							// Save image in redux
+							addImageAction({
+								id: imgId,
+								filters: {
+									brightness: 0,
+									contrast: 0,
+									noise: 0,
+									saturation: 0,
+									vibrance: 0,
+									blur: 0,
+								},
 							});
 
-							// Switch to More tab, to show controls on active object
-							changeTabAction("muokkaa");
+							canvas.add(img);
+							canvas.setActiveObject(img);
 						};
+						addImage(dataUrl);
+					};
 
-						input.click();
-						input.value = "";
-					}
+					// Render in canvas
+					canvas.remove(selectedCell);
+					canvas.renderAll();
+					toast.success("Kuva lisätty onnistuneesti", {
+						id: "toast-uploaded",
+					});
+
+					// Switch to More tab, to show controls on active object
+					changeTabAction("muokkaa");
 				};
 
-				// 4. Attach event handler
-				cell.on("mouseup", () => {
-					handleImageUpload(cell);
-				});
-
-				// 5. Render
-				canvas.add(cell);
-			});
-
-			// 6. Render all looped objects
-			canvas.renderAll();
-
-			// 7. Attach event handler on object selection
-			const handleImageSelect = (selected: CustomImageObject) => {
-				// Change tab on select
-				changeTabAction("muokkaa");
-
-				// Set selected image
-				setSelectedImageAction(selected.id);
+				input.click();
+				input.value = "";
 			};
 
-			canvas.on("selection:created", ({ selected }) => {
-				handleImageSelect(selected[0] as CustomImageObject);
+			// 4. Attach event handler
+			cell.on("mouseup", () => {
+				handleImageUpload(cell);
 			});
 
-			canvas.on("selection:updated", ({ selected }) => {
-				handleImageSelect(selected[0] as CustomImageObject);
-			});
+			// 5. Render
+			canvas.add(cell);
+		});
 
-			canvas.on("selection:cleared", () => {
-				clearSelectedImageAction();
-			});
+		// 6. Render all looped objects
+		canvas.renderAll();
 
-			// 8. Clean up the canvas when the component unmounts
-			return () => {
-				canvas.dispose();
-			};
-		}
+		// 7. Attach event handler on object selection
+		const handleImageSelect = (selected: CustomImageObject) => {
+			// Change tab on select
+			changeTabAction("muokkaa");
+
+			// Set selected image
+			setSelectedImageAction(selected.id);
+		};
+
+		canvas.on("selection:created", ({ selected }) => {
+			handleImageSelect(selected[0] as CustomImageObject);
+		});
+
+		canvas.on("selection:updated", ({ selected }) => {
+			handleImageSelect(selected[0] as CustomImageObject);
+		});
+
+		canvas.on("selection:cleared", () => {
+			clearSelectedImageAction();
+		});
+
+		// 8. Clean up the canvas when the component unmounts
+		return () => {
+			canvas.dispose();
+		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [activeRatioIndex, activeTemplateIndex]);
 
 	// Update canvas properties when borderSettings change
 	useEffect(() => {
-		if (canvasState && prevBorderSettings.current !== null) {
-			// Compare current and previous border settings
-			const prevSettings = prevBorderSettings.current;
-			if (
-				prevSettings.addBorder !== borderSettings.addBorder ||
-				prevSettings.borderColor !== borderSettings.borderColor ||
-				prevSettings.borderThickness !== borderSettings.borderThickness
-			) {
-				// Update canvas properties based on border settings
-				if (wrapperRef.current) {
-					const panelWidth = 640;
-					const ratio = ASPECT_RATIOS[activeRatioIndex].canvas(panelWidth);
+		if (!canvasState || !prevBorderSettings) {
+			prevBorderSettings.current = borderSettings;
+			return;
+		}
+		// Compare current and previous border settings
+		const prevSettings = prevBorderSettings.current;
+		if (
+			prevSettings.addBorder !== borderSettings.addBorder ||
+			prevSettings.borderColor !== borderSettings.borderColor ||
+			prevSettings.borderThickness !== borderSettings.borderThickness
+		) {
+			// Update canvas properties based on border settings
+			if (wrapperRef.current) {
+				const panelWidth = 640;
+				const ratio = ASPECT_RATIOS[activeRatioIndex].canvas(panelWidth);
 
-					// Loop through stored border references and remove them from the canvas
-					borderRefs.current.forEach((border) => canvasState.remove(border));
-					// Clear the stored references
-					borderRefs.current = [];
+				// Loop through stored border references and remove them from the canvas
+				borderRefs.current.forEach((border) => canvasState.remove(border));
+				// Clear the stored references
+				borderRefs.current = [];
+
+				const borderSize = borderSettings.borderThickness * 2;
+				if (borderSettings.addBorder) {
+					const bWidth = borderSize;
+					const outline = new fabric.Rect({
+						top: 0,
+						left: 0,
+						width: canvasState.width - bWidth * 2,
+						height: canvasState.height - bWidth * 2,
+						fill: "transparent",
+						stroke: "white",
+						strokeWidth: borderSize * 2,
+						selectable: false, // Make it not selectable
+						evented: false, // Make it not trigger events
+						strokeUniform: true,
+						objectCaching: false,
+					});
+					canvasState.add(outline);
+					borderRefs.current.push(outline); // Store reference to the added border
+				}
+				activeTemplate.config.forEach((config) => {
+					const PROPERTIES = config.rectFabric(ratio.height, ratio.width);
 
 					if (borderSettings.addBorder) {
-						const bWidth = borderSettings.borderThickness * 2;
-						const outline = new fabric.Rect({
-							top: 0,
-							left: 0,
-							width: canvasState.width - bWidth * 2,
-							height: canvasState.height - bWidth * 2,
-							fill: "",
-							stroke: "white",
-							strokeWidth: bWidth * 2,
+						const border = new fabric.Rect({
+							...PROPERTIES,
+							width: PROPERTIES.width - borderSize,
+							height: PROPERTIES.height - borderSize,
+							stroke: "white", // Set the border color
+							strokeWidth: borderSize,
 							selectable: false, // Make it not selectable
 							evented: false, // Make it not trigger events
 							strokeUniform: true,
+							fill: "transparent",
+							objectCaching: false,
 						});
-						canvasState.add(outline);
-						borderRefs.current.push(outline); // Store reference to the added border
+						canvasState.add(border);
+						console.log(PROPERTIES.width, PROPERTIES.height);
+						borderRefs.current.push(border); // Store reference to the added border
+					} else {
+						// Loop through stored border references and remove them from the canvas
+						borderRefs.current.forEach((border) => canvasState.remove(border));
+
+						borderRefs.current = [];
 					}
-					activeTemplate.config.forEach((config) => {
-						const PROPERTIES = config.rectFabric(ratio.height, ratio.width);
-
-						if (borderSettings.addBorder) {
-							const border = new fabric.Rect({
-								...PROPERTIES,
-								width: PROPERTIES.width - borderSettings.borderThickness * 2,
-								height: PROPERTIES.height - borderSettings.borderThickness * 2,
-								stroke: "white", // Set the border color
-								strokeWidth: borderSettings.borderThickness * 2, // Set the border width
-								selectable: false, // Make it not selectable
-								evented: false, // Make it not trigger events
-								strokeUniform: true,
-								fill: "",
-							});
-							canvasState.add(border);
-							borderRefs.current.push(border); // Store reference to the added border
-						} else {
-							// Loop through stored border references and remove them from the canvas
-							borderRefs.current.forEach((border) =>
-								canvasState.remove(border)
-							);
-							//canvasState.remove(outline);
-
-							// Clear the stored references
-							borderRefs.current = [];
-						}
-					});
-				}
-				// Redraw canvas
-				canvasState.renderAll();
-				// Update previous border settings
-				prevBorderSettings.current = borderSettings;
+				});
 			}
-		} else {
-			// Initialize previous border settings
+			// Redraw canvas
+			canvasState.renderAll();
+			// Update previous border settings
 			prevBorderSettings.current = borderSettings;
 		}
 	}, [canvasState, borderSettings, activeRatioIndex, activeTemplate.config]);

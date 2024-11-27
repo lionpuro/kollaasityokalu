@@ -112,7 +112,7 @@ export default function FilterControl(props: FilterControlTypeProps) {
 						onClick={() => setActiveFilter(id)}
 						className={clsx(
 							"cursor-pointer transition-colors",
-							"min-w-20 mx-1 h-20 px-2",
+							"mx-1 h-20 min-w-20 px-2",
 							"flex flex-col items-center justify-center text-center",
 							"rounded hover:bg-neutral-800"
 						)}
