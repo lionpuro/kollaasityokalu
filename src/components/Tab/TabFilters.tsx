@@ -32,9 +32,9 @@ export default function TabFilters() {
 		setAddBorderAction(addOutlineValue); // Dispatch action to update addOutline state in Redux store
 	};
 
-	const handleThicknessChange = (event: { target: { value: any } }) => {
+	const handleThicknessChange = (event: { target: { value: string } }) => {
 		const thickness = event.target.value;
-		setBorderThicknessAction(thickness); // Dispatch action to update thickness in Redux store
+		setBorderThicknessAction(Number(thickness)); // Dispatch action to update thickness in Redux store
 	};
 
 	useEffect(() => {

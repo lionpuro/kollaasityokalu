@@ -1,6 +1,6 @@
 import {
 	changeTab,
-	changeRatioByIndex,
+	changeRatioByName,
 	changeTemplateByIndex,
 	setCanvas,
 	setAddBorder,
@@ -32,8 +32,8 @@ function useTabAction() {
 
 function useRatioAction() {
 	const dispatch = useAppDispatch();
-	const changeRatio = (index: number) => {
-		dispatch(changeRatioByIndex(index));
+	const changeRatio = (name: string) => {
+		dispatch(changeRatioByName(name));
 		dispatch(clearAllImages());
 	};
 	return { changeRatio };

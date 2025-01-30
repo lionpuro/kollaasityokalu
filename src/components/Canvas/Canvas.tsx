@@ -1,9 +1,10 @@
 import CanvasFooter from "@/components/Canvas/CanvasFooter";
-import { OBJECT_LOCKED, ASPECT_RATIOS } from "@/constants/canvasConfig";
+import { OBJECT_LOCKED } from "@/constants/canvasConfig";
 import { useCanvasAction, useTabAction } from "@/hooks/useReduxAction";
 import { useCanvasConfigData } from "@/hooks/useReduxData";
 import { selectBorderSettings } from "@/redux/canvasSlice";
 import { CustomImageObject } from "@/types";
+import findAspectRatio from "@/utils/findAspectRatio";
 import * as fabric from "fabric";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
@@ -21,7 +22,7 @@ export default function Canvas() {
 	const [canvasState, setCanvasState] = useState<fabric.Canvas | null>(null);
 
 	// Get necessary Redux data via hooks
-	const { activeTemplateIndex, activeRatioIndex, activeTemplate } =
+	const { activeTemplateIndex, activeRatioName, activeTemplate } =
 		useCanvasConfigData();
 
 	const {
@@ -43,7 +44,7 @@ export default function Canvas() {
 		}
 		// 0. Calculate canvas ratio by initial client width
 		const panelWidth = 640;
-		const ratio = ASPECT_RATIOS[activeRatioIndex].canvas(panelWidth);
+		const ratio = findAspectRatio(activeRatioName).canvas(panelWidth);
 
 		// 1. Setup canvas
 		const canvas = new fabric.Canvas(canvasRef.current, {
@@ -57,7 +58,7 @@ export default function Canvas() {
 		});
 
 		if (wrapperRef.current.clientWidth < panelWidth) {
-			const scaledRatio = ASPECT_RATIOS[activeRatioIndex].canvas(
+			const scaledRatio = findAspectRatio(activeRatioName).canvas(
 				wrapperRef.current.clientWidth
 			);
 			canvas.setDimensions(
@@ -187,7 +188,7 @@ export default function Canvas() {
 			canvas.dispose();
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [activeRatioIndex, activeTemplateIndex]);
+	}, [activeRatioName, activeTemplateIndex]);
 
 	// Update canvas properties when borderSettings change
 	useEffect(() => {
@@ -205,7 +206,7 @@ export default function Canvas() {
 			// Update canvas properties based on border settings
 			if (wrapperRef.current) {
 				const panelWidth = 640;
-				const ratio = ASPECT_RATIOS[activeRatioIndex].canvas(panelWidth);
+				const ratio = findAspectRatio(activeRatioName).canvas(panelWidth);
 
 				// Loop through stored border references and remove them from the canvas
 				borderRefs.current.forEach((border) => canvasState.remove(border));
@@ -263,7 +264,7 @@ export default function Canvas() {
 			// Update previous border settings
 			prevBorderSettings.current = borderSettings;
 		}
-	}, [canvasState, borderSettings, activeRatioIndex, activeTemplate.config]);
+	}, [canvasState, borderSettings, activeRatioName, activeTemplate.config]);
 
 	return (
 		<div

@@ -39,7 +39,7 @@ export type AspectRatioType = {
 
 export interface CanvasStateType {
 	canvas: Canvas | null;
-	ratio: number;
+	ratio: string;
 	template: number;
 	tab: SelectedTabType;
 	addBorder: boolean;
